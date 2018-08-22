@@ -1,0 +1,22 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import "~fullcalendar/dist/fullcalendar.css";
+@import "~fullcalendar-scheduler/dist/scheduler.css";
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+
+.fc-slats tr:hover {
+    background-color: rgba(0,0,0,0.05);
+}
