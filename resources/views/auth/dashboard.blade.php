@@ -3,13 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card">
-                    <div class="card-header">Bokningar</div>
+            <div class="card">
+                <div class="card-header">Bokningar</div>
 
-                    <div class="card-body">
-                        <div id="calendar"></div>
-                    </div>
+                <div class="card-body">
+                    <div id="calendar"></div>
                 </div>
             </div>
         </div>

@@ -45,7 +45,9 @@ $(function() {
                     right: $(window).width() < 765 ? '' : 'agendaDay,agendaWeek',
                 },
                 defaultView: $(window).width() < 765 ? 'agendaDay' : 'agendaWeek',
-                columnHeaderFormat: 'ddd D/M',
+                columnHeaderHtml: function(date) {
+                    return `${date.format('ddd D/M')}<i class="fas fa-print"></i>`;
+                },
                 locale: 'sv',
                 buttonText: {
                     today: 'Idag',
@@ -61,7 +63,7 @@ $(function() {
                 minTime: '07:00',
                 maxTime: '17:00',
                 allDaySlot: true,
-                firstDay: 'Monday',
+                firstDay: 1,
                 displayEventTime: false,
                 eventStartEditable: true,
                 nowIndicator: true,
@@ -99,11 +101,20 @@ $(function() {
                     delete event.source;
                     axios.put('/bookings/' + event.id, event);
                 },
+                eventAfterAllRender: function() {
+                    $('#calendar .fc-head-container .fc-day-header')
+                        .off('click')
+                        .on('click', function() {
+                            const date = $(this).attr('data-date');
+                            window.location = `print?date=${date}`;
+                        });
+                },
             });
         },
 
         components: {
             'event-modal': require('./components/EventModal.vue'),
+            print: require('./components/Print.vue'),
         },
     });
 });

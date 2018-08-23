@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class BookingController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return Booking::all();
+        return Booking::filterByRequest($request)->get();
     }
 
     public function store(Request $request)
@@ -26,7 +26,7 @@ class BookingController extends Controller
             'all_day' => $request->allDay,
         ]);
 
-        return response()->json($booking);
+        return $booking;
     }
 
     public function update(Booking $booking, Request $request)
@@ -42,12 +42,12 @@ class BookingController extends Controller
             'all_day' => $request->allDay,
         ]);
 
-        return response()->json($booking);
+        return $booking;
     }
 
     public function destroy(Booking $booking)
     {
         $booking->delete();
-        return response()->json($booking);
+        return $booking;
     }
 }

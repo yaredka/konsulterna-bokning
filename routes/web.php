@@ -23,6 +23,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/print', 'HomeController@print')->name('print');
 
 // Bookings
 Route::post('/bookings', 'BookingController@store');
