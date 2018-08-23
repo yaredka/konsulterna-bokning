@@ -87,30 +87,17 @@ export default {
         });
 
         bus.$on('modal:type', (type, event) => {
-            /*if (event) {
-                if (type == 'edit-event') {
-                    console.log(event, this.event);
-                    /*this.event.id = event.id;
-                    this.event.title = event.title;
-                    this.event.description = event.description;
-                    this.event.jobTypeId = event.jobTypeId;
-                } else {
-                    this.event.date = event.date;
-                    this.event.time = event.time;
-                    this.event.allDay = event.allDay;
-                }
-            }*/
-            console.log(type, event);
             if (event) {
+                delete event.source;
                 this.event = event;
             } else {
                 this.event = {
-                    title: null,
-                    description: null,
-                    jobTypeId: this.event.jobTypeId,
-                    allDay: this.event.allDay,
-                    date: this.event.date,
-                    time: this.event.time,
+                    title: '',
+                    description: '',
+                    jobTypeId: null,
+                    allDay: false,
+                    date: null,
+                    time: null,
                 };
             }
             this.modalType = type;
@@ -125,22 +112,15 @@ export default {
         },
         addEvent() {
             axios
-                .post('/bookings', {
-                    title: this.event.title,
-                    description: this.event.description,
-                    jobTypeId: this.event.jobTypeId,
-                    allDay: this.event.allDay,
-                    date: this.event.date,
-                    time: this.event.time,
-                })
+                .post('/bookings', this.event)
                 .then(response => {
-                    $('#calendar').fullCalendar('renderEvent', {
-                        title: this.event.title,
-                        start: this.event.allDay
-                            ? this.event.date
-                            : this.event.date + ' ' + this.event.time,
-                        allDay: this.event.allDay,
-                    });
+                    // camelCase all keys
+                    const data = {};
+                    Object.keys(response.data).forEach(
+                        k => (data[_.camelCase(k)] = response.data[k]),
+                    );
+
+                    $('#calendar').fullCalendar('renderEvent', data);
                     $('#calendar').fullCalendar('unselect');
                     $('.modal').modal('hide');
                 })
@@ -157,29 +137,8 @@ export default {
         },
         updateEvent() {
             axios
-                .put('/bookings/' + this.event.id, {
-                    title: this.event.title,
-                    description: this.event.description,
-                    jobTypeId: this.event.jobTypeId,
-                    allDay: this.event.allDay,
-                    date: this.event.date,
-                    time: this.event.time,
-                })
+                .put('/bookings/' + this.event.id, this.event)
                 .then(response => {
-                    /*const eventData = response.data;
-                    console.log('this.event before', this.event);
-                    this.event.title = eventData.title;
-                    this.event.description = eventData.description;
-                    this.event.jobTypeId = eventData.job_type_id;
-                    this.event.allDay = eventData.all_day;
-                    this.event.start = eventData.all_day
-                        ? eventData.date
-                        : eventData.date + ' ' + eventData.time;
-                    this.event.color = eventData.job_type_color;
-                    console.log('this.event after', this.event);*/
-
-                    console.log('this.event after', this.event);
-
                     $('#calendar').fullCalendar('updateEvent', this.event);
                     $('#calendar').fullCalendar('unselect');
                     $('.modal').modal('hide');
