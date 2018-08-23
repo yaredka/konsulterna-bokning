@@ -31,7 +31,7 @@ class Booking extends Model
             'description' => 'nullable',
             'allDay' => 'boolean',
             'date' => 'date_format:Y-m-d',
-            'time' => 'date_format:H:i',
+            'time' => 'nullable|date_format:H:i',
         ], [], [
             'title' => 'Titel',
             'description' => 'Beskrivning',
