@@ -7,6 +7,7 @@ Homestead.json
 .env.bak*
 .DS_STORE
 *.swp
-/public/assets/css/
-/public/assets/js
+/public/css/
+/public/js
 /storage/logs
+public/js/app.js
