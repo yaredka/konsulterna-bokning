@@ -114,13 +114,15 @@ export default {
             axios
                 .post('/bookings', this.event)
                 .then(response => {
-                    // camelCase all keys
                     const data = {};
+                    // camelCase all keys
                     Object.keys(response.data).forEach(
                         k => (data[_.camelCase(k)] = response.data[k]),
                     );
+                    data.start = data.allDay ? data.date : data.date + ' ' + data.time;
+                    data.color = data.jobTypeColor;
 
-                    $('#calendar').fullCalendar('renderEvent', data);
+                    $('#calendar').fullCalendar('renderEvent', data, true);
                     $('#calendar').fullCalendar('unselect');
                     $('.modal').modal('hide');
                 })

@@ -89,6 +89,9 @@ $(function() {
                 },
                 dayClick: function(date, jsEvent, view) {
                     bus.$emit('modal:type', 'add-event', {
+                        title: '',
+                        description: '',
+                        jobTypeId: null,
                         date: date.format('YYYY-MM-DD'),
                         time: date.format('HH:mm'),
                         allDay: !date.hasTime(),
