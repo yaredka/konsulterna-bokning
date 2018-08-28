@@ -61,7 +61,7 @@ $(function() {
                 slotLabelInterval: '00:30',
                 defaultTimedEventDuration: '00:30',
                 minTime: '07:00',
-                maxTime: '17:00',
+                //maxTime: '17:00',
                 allDaySlot: true,
                 firstDay: 1,
                 displayEventTime: false,
