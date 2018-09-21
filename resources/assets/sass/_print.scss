@@ -1,3 +1,17 @@
+@media print {
+	.print {
+		.cell {
+			h5 {
+				font-size: 16px;
+			}
+
+			p {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
 .print {
 	.time-row {
 		display: flex;

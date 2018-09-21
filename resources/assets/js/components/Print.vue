@@ -3,7 +3,7 @@
 		<h1>Schema för {{ title }}</h1>
 		<div v-for="(bookings, time) in grouped_bookings" class="time-row">
 			<div class="time">
-				{{ time | format_time }}
+				<p>{{ time | format_time }}</p>
 			</div>
 			<div v-for="booking in bookings" class="cell">
 				<div v-bind:style="{ background: booking.job_type.primary_color }">
