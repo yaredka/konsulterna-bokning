@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        <print :title='{!! json_encode($title) !!}' :grouped_bookings='{!! json_encode($grouped_bookings) !!}'/>
+        <print :title='@json($title)' :grouped_bookings='@json($grouped_bookings)'/>
     </div>
 @endsection
