@@ -13,6 +13,10 @@
 }
 
 .print {
+	p {
+		white-space: pre-line;
+		word-break: break-word;
+	}
 	.time-row {
 		display: flex;
 		padding: 5px 0;
