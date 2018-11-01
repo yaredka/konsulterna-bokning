@@ -1,4 +1,7 @@
 @media print {
+	.container {
+		max-width: 100% !important;
+	}
 	.print {
 		.cell {
 			h5 {
@@ -7,6 +10,12 @@
 
 			p {
 				font-size: 18px;
+			}
+
+			.time-row {
+				.time {
+					width: 50px;
+				}
 			}
 		}
 	}
@@ -22,7 +31,7 @@
 		padding: 5px 0;
 
 		.time {
-			width: 140px;
+			width: 70px;
 		}
 
 		.cell {
